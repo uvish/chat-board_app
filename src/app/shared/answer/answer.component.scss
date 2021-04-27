@@ -1,0 +1,23 @@
+.answer{
+    // background:red;
+    padding: 10px;
+    margin-bottom: 10px;
+    width:100%;
+    background:#ECECEC;
+    border-radius: 20px;
+    .answer_top_bar{
+        display:flex;
+        flex-direction:row;
+        justify-content:space-between;
+        .votes{
+            display:flex;
+            flex-direction:row;
+            p{ margin: 10px;}
+        }
+    }
+    
+    
+    .answer_text{
+        font-size:1.2rem;
+    }
+}

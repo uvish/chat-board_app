@@ -1,0 +1,41 @@
+<div class="post">
+
+    <div class="topbar">
+        <div>
+            <h3>asked by: {{post["user_name"]}}</h3>
+            <div>
+                <p>{{post["created"] | date:'short'}}</p>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+               <mat-menu #menu="matMenu">
+               <button mat-menu-item>Share Post</button>
+               <button mat-menu-item>Delete</button>
+               </mat-menu>
+            </div>
+            
+        </div>
+       
+    </div>
+
+    <div class="text">
+        <a>{{post["title"]}}</a>
+        <p>{{post["content"]}}</p>
+    </div>
+
+    <div class="answers">
+       <answer *ngFor="let answer of answers" [answer]="answer"></answer>
+    </div>
+
+    <div class="buttons">
+        <div>
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="answer.answer" placeholder="Answer">
+          </mat-form-field>
+          <button (click)="postAnswer()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+            <mat-icon>send</mat-icon>
+          </button>
+        </div>
+    </div>
+    
+ </div>

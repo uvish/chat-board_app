@@ -1,0 +1,9 @@
+<mat-toolbar>
+    <img id="logo" src="assets/logo.png" alt="">
+    <span>ChatBoard</span>
+    <span class="example-spacer"></span>
+    <button *ngIf="!loggedIn" mat-stroked-button color="primary" [routerLink]="['login']" >Login</button>
+    <button *ngIf="!loggedIn" mat-stroked-button color="primary" [routerLink]="['register']" >Signup</button>
+    <button *ngIf="loggedIn" mat-stroked-button color="primary" (click)="logout()" >Logout</button>
+    <button *ngIf="loggedIn" mat-stroked-button color="primary" [routerLink]="['dashboard']" >{{username}}</button>
+  </mat-toolbar>

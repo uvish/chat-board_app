@@ -1,0 +1,21 @@
+<div class="page">
+<div class="wrapper">
+    <div class="space"></div>
+    <div class="main_row">
+   
+        <post *ngFor="let post of posts" [post]="post"></post>
+      
+    </div>
+    <div class="sidebar">
+        <create-sidebar></create-sidebar>
+      <div id="requests" class="requests">
+      <label for="requests">Channel Requests</label>
+
+      </div>
+      <channels-sidebar></channels-sidebar>
+    </div>
+    <div class="space"></div>
+ </div>
+</div>
+
+

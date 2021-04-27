@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="left">
+        <img src="assets/logo.png" alt="ChatBoard">
+    </div>
+    <div class="right">
+       <!-- <div class="details"> -->
+           <mat-card>
+               <form (ngSubmit)="login()">
+               <mat-card-header>
+                   <mat-card-title>
+                       <h1>Login</h1>
+                   </mat-card-title>
+               </mat-card-header>
+               <mat-card-content>
+  
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Email</mat-label>
+                      <input matInput required placeholder="Email" ngModel email name="email" [(ngModel)]="credentials.email" appearance="outline" type="email">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Password</mat-label>
+                      <input matInput required placeholder="Password" [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="credentials.password"  type="password" appearance="outline">
+                      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </mat-form-field>
+  
+               </mat-card-content>
+               <mat-card-actions>
+                  <button mat-stroked-button color="primary" type="reset">Reset</button>
+                  <button mat-stroked-button color="primary" type="submit">Login</button>
+                </mat-card-actions>
+              </form>
+           </mat-card>
+       <!-- </div> -->
+    </div>
+  </div>

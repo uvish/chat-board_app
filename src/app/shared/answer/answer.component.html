@@ -1,0 +1,22 @@
+<div class="answer">
+           
+    <div class="answer_top_bar">
+        <p class="user">{{answer["user_name"]}}</p>
+       
+        <div class="votes">
+            <button mat-icon-button aria-label="Upvote" (click)="upvote()">
+                <mat-icon>arrow_upward</mat-icon>
+              </button>
+            <p class="upvote">{{votes["upvotes"]}}</p>
+            <button mat-icon-button aria-label="downvote" (click)="downvote()">
+                <mat-icon>arrow_downward</mat-icon>
+              </button>
+            <p class="downvote">{{votes["downvotes"]}}</p>
+        </div>
+      </div>
+     
+      <div class="answer_text">
+          <p>{{answer["answer"]}}</p>
+      </div>
+
+  </div>
