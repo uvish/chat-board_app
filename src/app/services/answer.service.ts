@@ -19,4 +19,7 @@ export class AnswerService {
   downvote(voteRequest:any){
     return this.http.post(`http://localhost:8080/api/vote/downvote`,voteRequest,{responseType: 'text'});
   }
+  deleteAnswer(answer_id:any){
+    return this.http.post(`http://localhost:8080/api/answer/delete/`.concat(answer_id),{responseType: 'json'});
+  }
 }

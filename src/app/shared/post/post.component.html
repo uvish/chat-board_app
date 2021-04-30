@@ -1,30 +1,71 @@
 <div class="post">
 
+     <!--Qusetion Edit Modal -->
+     <div class="modal top fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+        <div class="modal-dialog modal-xl ">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
+            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-outline">
+                    <h2>Post Title</h2>
+                    <input type="text" id="typeText" [(ngModel)]="editedPost.title" class="form-control" placeholder="Post Title" />
+                    <!-- <label class="form-label" for="typeText">Post Title</label> -->
+                  </div>
+                
+                  <div class="form-outline">
+                    <h2>Post Title</h2>
+                    <textarea class="form-control" id="textAreaExample" [(ngModel)]="editedPost.content" rows="4"></textarea>
+                    <!-- <label class="form-label" for="textAreaExample">Question</label> -->
+                  </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal" (click)="refreshEditDetails()" >Close</button>
+            <button type="button" class="btn btn-primary" (click)="saveEditedPost()">Save changes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- Question Edit Modal End -->
+
+
+
     <div class="topbar">
         <div>
-            <h3>asked by: {{post["user_name"]}}</h3>
-            <div>
-                <p>{{post["created"] | date:'short'}}</p>
-                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
+            <h3 id="user_name">asked by: {{post_data["user_name"]}}</h3>
+            <!-- <div> -->
+                <h3 id="date">{{post_data["created"] | date}}</h3>
+                <button *ngIf="canDelete" mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
                     <mat-icon>more_vert</mat-icon>
                   </button>
                <mat-menu #menu="matMenu">
-               <button mat-menu-item>Share Post</button>
-               <button mat-menu-item>Delete</button>
+               <button (click)="deletePost()" mat-menu-item>Delete</button>
+               <button mat-menu-item data-mdb-toggle="modal" data-mdb-target="#editModal">Edit</button>
+
                </mat-menu>
-            </div>
+            <!-- </div> -->
             
         </div>
        
     </div>
 
     <div class="text">
-        <a>{{post["title"]}}</a>
-        <p>{{post["content"]}}</p>
+        <a>{{post_data["title"]}}</a>
+        <p>{{post_data["content"]}}</p>
+        <!-- sort button -->
+        <button mat-button [matMenuTriggerFor]="sortmenu">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">sort</mat-icon>
+        </button>
+        <mat-menu #sortmenu="matMenu">
+        <button (click)="sortAnswersByDate()" mat-menu-item>Sort By Date</button>
+        <button (click)="sortAnswersByUpvotes()" mat-menu-item>Sort By Most Helpful</button>
+        </mat-menu>
     </div>
 
     <div class="answers">
-       <answer *ngFor="let answer of answers" [answer]="answer"></answer>
+       <answer *ngFor="let ans of answers" [answer_data]="ans"></answer>
     </div>
 
     <div class="buttons">

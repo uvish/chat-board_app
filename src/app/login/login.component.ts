@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
             },
             error=>{
               console.log(error)
-              this.openSnackBar(error,"Ok");
+              this.openSnackBar(error["error"],"Ok");
             } 
           )
        }

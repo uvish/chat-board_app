@@ -10,6 +10,9 @@ export class PostService {
   createPost(post:any){
     return this.http.post(`http://localhost:8080/api/posts/create`,post,{responseType: 'json'});
   }
+  deletePost(post_id:any){
+    return this.http.post(`http://localhost:8080/api/posts/delete/`.concat(post_id),{responseType: 'json'});
+  }
   getAllPostsByUser(user_id:any){
     return this.http.get(`http://localhost:8080/api/posts/all/`.concat(user_id),{responseType:'json'});
   }
@@ -22,4 +25,8 @@ export class PostService {
   getAllAnswersByPost(post_id:any){
     return this.http.get(`http://localhost:8080/api/answer/get/`.concat(post_id),{responseType:'json'});
   }
+  editPost(editedPost:any){
+    return this.http.post(`http://localhost:8080/api/posts/edit`,editedPost,{responseType:'json'});
+  }
+
 }

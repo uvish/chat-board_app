@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+$blue:#3289FE;
+$off_white:#FCFCFC;
+$border-radius:10px;
+$text_color:#3F3F3F;
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.card{
+    box-shadow: -1px 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+.page{
+    height:90%;
+    width:100%;
+    display:flex;
+    flex-direction:row;
+    background:$off_white;
+    .left_sidebar{
+      height:100%;
+      width:20%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:space-between;
+    //  background:green;
+     .channel_info{
+         height:300px;
+         width:90%;
+         background:white;
+         border-radius:$border-radius;
+         padding:10px;
+         margin-top: 10px;
+         #topbar{
+             display:flex;
+             flex-direction: row;
+             align-items:center;
+            #channel_name{
+                width:70%;
+                margin: 20px;
+                font-size:40px;
+                font-weight:bold;
+                line-height: 40px;
+            }
+            #join_button{
+                cursor: pointer;
+                width:30%;
+                height:30px;
+                width:70px;
+                background:$blue;
+                border-radius:$border-radius;
+                display:flex;
+                // justify-content:center;
+                // align-items:center;
+                margin: auto;
+                text-align:center;
+                margin-right: 20px;
+                #join{
+                    display:grid;
+                    place-items: center;
+                    height:100%;
+                    width:100%;
+                    font-size:18px;
+                    font-weight:bold;
+                    color:white;
+                }
+            }
+         }
+        
+         #channel_description{
+            margin: 20px;
+            font-size:20px;
+            line-height: 24px;
+         }
+         #admin_name{
+            margin: 20px;
+            font-size:16px;
+         }
+     }
+
+     .home{
+         cursor: pointer;
+         height:50px;
+         width:90%;
+         border-radius: $border-radius;
+         margin-bottom: 20px;
+         display: flex;
+         flex-direction: row;
+        .icon{
+            width:20%;
+            height:100%;
+            display: grid;
+            place-items: center;
+            mat-icon{
+                color:$blue;
+            }
+        }
+        .text{
+            height:100%;
+            width:70%;
+            display:grid;
+            place-items: center;
+            font-size:24px;
+            color:$text_color;
+            font-weight:bold;
+            background: white;
+            p{ margin:0;padding: 0;}
+        }
+     }
+    }
+    .main{
+        height:100%;
+        width:60%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        brief-post{
+           width:95%;
+           margin-top:10px;
+         }
+         .noposts{
+             font-size:40px;
+             font-weight:300;
+             margin-top:100px;
+         }
+      }
+      .right_sidebar{
+        height:100%;
+        width:20%;
+        margin-right:20px;
+      }
+}

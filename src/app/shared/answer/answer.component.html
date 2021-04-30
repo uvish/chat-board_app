@@ -1,22 +1,33 @@
 <div class="answer">
            
     <div class="answer_top_bar">
-        <p class="user">{{answer["user_name"]}}</p>
+        <p class="user">{{answer_data["user_name"]}}</p>
+        <p>{{answer_data["created"] | date}} </p>
        
         <div class="votes">
             <button mat-icon-button aria-label="Upvote" (click)="upvote()">
                 <mat-icon>arrow_upward</mat-icon>
               </button>
-            <p class="upvote">{{votes["upvotes"]}}</p>
+            <!-- <p class="upvote">{{votes["upvotes"]}}</p> -->
+            <p class="upvote">{{answer_data["up_votes"]}}</p>
             <button mat-icon-button aria-label="downvote" (click)="downvote()">
                 <mat-icon>arrow_downward</mat-icon>
               </button>
-            <p class="downvote">{{votes["downvotes"]}}</p>
+            <!-- <p class="downvote">{{votes["downvotes"]}}</p> -->
+            <p class="downvote">{{answer_data["down_votes"]}}</p>
+        </div>
+        <div>
+            <button *ngIf="canDelete" mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+           <mat-menu #menu="matMenu">
+           <button (click)="deleteAnswer()" mat-menu-item>Delete</button>
+           </mat-menu>
         </div>
       </div>
      
       <div class="answer_text">
-          <p>{{answer["answer"]}}</p>
+          <p>{{answer_data["answer"]}}</p>
       </div>
 
   </div>

@@ -33,6 +33,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChannelComponent } from './channel/channel.component';
 import { PostComponent } from './shared/post/post.component';
 import { AnswerComponent } from './shared/answer/answer.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { BriefPostComponent } from './shared/brief-post/brief-post.component';
+import { MychannelsComponent } from './mychannels/mychannels.component';
 
 
 
@@ -48,7 +51,10 @@ import { AnswerComponent } from './shared/answer/answer.component';
     ChannelsSidebarComponent,
     ChannelComponent,
     PostComponent,
-    AnswerComponent
+    AnswerComponent,
+    LandingPageComponent,
+    BriefPostComponent,
+    MychannelsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,25 @@
+<div class="main card">
+    <div class="content">
+        <!-- <mat-icon aria-hidden="false" aria-label="Example home icon">more_horiz</mat-icon> -->
+        <p id="title">{{post_data["title"]}}</p>
+        <p id="content">{{post_data["content"]}}</p>
+    </div>
+    <div class="line"></div>
+    <div class="footer">
+
+        <div id="user">
+        <p id="postedby">Posted by </p>
+        <p id="username">{{post_data["user_name"]}}</p>
+        </div>
+        
+        <div class="date">
+            <p id="date">{{post_data["created"] | date}}</p>
+        </div>
+
+        <div class="comments">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">chat</mat-icon>
+            <p>{{answers?.length}}</p>
+        </div>
+
+    </div>
+</div>

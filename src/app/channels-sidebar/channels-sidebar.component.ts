@@ -16,6 +16,7 @@ export class ChannelsSidebarComponent implements OnInit {
     this.channelsService.getAll().subscribe(
       response =>{
         this.channels=response;
+        console.log("channels");
         console.log(response);
       },
       error=>{

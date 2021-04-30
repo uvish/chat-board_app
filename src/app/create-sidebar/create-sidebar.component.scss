@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+$blue:#3289FE;
+$off_white:#FCFCFC;
+$border-radius:10px;
+$text_color:#3F3F3F;
+*{
+    margin: 0;
+    padding: 0;
+}
+.card{
+    box-shadow: -1px 2px 15px rgba(0, 0, 0, 0.05);
+}
+
 .create{
     margin:10px;
     height:20%;
@@ -9,12 +22,16 @@
    .button{
        width:80%;
        height:50px;
-       border-radius:20px;
+       border-radius:$border-radius;
        background:#ECECEC;
        display:grid;
        place-items: center;
        font-size:20px;
        cursor: pointer;
+       background:$blue;
+       font-size: 24px;
+       color:white;
+       font-weight:400;
    }
    .create_channel{
        display: flex;

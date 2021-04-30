@@ -1,7 +1,37 @@
-<!-- <mat-paginator [length]="100"
-              [pageSize]="20"
-              [pageSizeOptions]="[5, 10, 25, 100]">
+<div class="page">
+    <div class="left_sidebar">
+        <div class="channel_info card">
 
-               
-</mat-paginator> -->
-<post *ngFor="let post of posts" [post]="post"></post>    
+            <div id="topbar">
+            <p id="channel_name">{{channel_details["channel_name"]}}</p>
+
+            <div id="join_button">
+                <p id="join">Join +</p>
+            </div>
+
+            </div>
+            <p id="channel_description">{{channel_details["channel_description"]}}</p>
+            <p id="admin_name">Admin: {{channel_details["admin"]}}</p>
+           
+        </div>
+        <div class="home card" [routerLink]="['']">
+            <div class="icon">
+                <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+            </div>
+            <div class="text">
+                <p>Home</p>
+            </div>
+            
+        </div>
+    </div>
+    <div class="main">
+        <!-- <post *ngFor="let post of posts" [post_data]="post" [channel_id]="channel_id"></post> -->
+       <brief-post *ngFor="let post of posts"  [post_data]="post"></brief-post>
+       <div class="noposts" *ngIf="no_posts">No Posts Yet !</div>
+    </div>
+    <div class="right_sidebar">
+        <create-sidebar></create-sidebar>
+        <channels-sidebar></channels-sidebar>
+    </div>
+</div>
+

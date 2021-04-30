@@ -1,9 +1,22 @@
-<mat-toolbar>
-    <img id="logo" src="assets/logo.png" alt="">
-    <span>ChatBoard</span>
+<div class="header">
+  <div [routerLink]="['']" class="logo">
+    <img  id="logo" src="assets/logo2.png" alt="logo">
+    <span id="chat">Chat</span>
+    <span id="board">Board</span>
+  </div>
     <span class="example-spacer"></span>
-    <button *ngIf="!loggedIn" mat-stroked-button color="primary" [routerLink]="['login']" >Login</button>
-    <button *ngIf="!loggedIn" mat-stroked-button color="primary" [routerLink]="['register']" >Signup</button>
-    <button *ngIf="loggedIn" mat-stroked-button color="primary" (click)="logout()" >Logout</button>
-    <button *ngIf="loggedIn" mat-stroked-button color="primary" [routerLink]="['dashboard']" >{{username}}</button>
-  </mat-toolbar>
+    <div class="login">
+    <p *ngIf="!loggedIn" mat-stroked-button color="primary" [routerLink]="['login']" >Login</p>
+    <p *ngIf="!loggedIn" mat-stroked-button color="primary" [routerLink]="['register']" >Signup</p>
+    <div id="user_logo" *ngIf="loggedIn" mat-stroked-button color="primary" [routerLink]="['dashboard']" >{{username | uppercase | slice:0:1}}</div>
+    <p *ngIf="loggedIn" mat-stroked-button color="primary" (click)="logout()" >Logout</p>
+  </div>
+</div>
+<!-- 
+  <div class="header">
+    <div class="space"></div>
+    <div class="login">
+        <p routerLink="/login" >Login</p>
+        <p  routerLink="/register" >SignUp</p>
+    </div>
+</div> -->

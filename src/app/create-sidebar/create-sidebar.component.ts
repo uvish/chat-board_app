@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChannelService } from '../services/channel.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { PostService } from '../services/post.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'create-sidebar',
@@ -10,23 +11,24 @@ import { PostService } from '../services/post.service';
   styleUrls: ['./create-sidebar.component.scss']
 })
 export class CreateSidebarComponent implements OnInit {
- channel={
-   "name":"",
-   "description":"",
-   "admin_id":localStorage.getItem("id")
- };
- post={
-  "title":"",
-  "content":"",
-  "user_id":localStorage.getItem("id"),
-  "channel_id":""
-}
- channels:any;
- x:any ;
-  exists:any;
 
-  constructor(private _snackbar:MatSnackBar,private httpClient: HttpClient,private channelService: ChannelService,private postService: PostService) { }
+
+  constructor(private authService: AuthService,private _snackbar:MatSnackBar,private httpClient: HttpClient,private channelService: ChannelService,private postService: PostService) { }
   
+  channel={
+    "name":"",
+    "description":"",
+    "admin_id":this.authService.getUserId(),
+  };
+  post={
+   "title":"",
+   "content":"",
+   "user_id":this.authService.getUserId(),
+   "channel_id":""
+ }
+  channels:any;
+  x:any ;
+   exists:any;
   ngOnInit(): void {
     this.channelService.getAll().subscribe(
       response =>{
@@ -55,6 +57,7 @@ export class CreateSidebarComponent implements OnInit {
          }
       )
    }
+   window.location.reload();
   }
 
   createChannel(){

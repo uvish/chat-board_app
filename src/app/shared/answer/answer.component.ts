@@ -1,6 +1,9 @@
 import { AnswerService } from './../../services/answer.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { PostComponent } from '../post/post.component';
+import { ChannelComponent } from 'src/app/channel/channel.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'answer',
@@ -8,53 +11,74 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./answer.component.scss']
 })
 export class AnswerComponent implements OnInit {
-  @Input() answer:any;
-  votes:any;
-  voteRequest={
-    "user_id":JSON.parse(localStorage.getItem('id') || '{}'),
-    "answer_id":""
-  }
-  constructor(private answerService:AnswerService) { }
+  @Input() answer_data:any;
+  canDelete:boolean = false;
+  // votes:any;
+  voteRequest:any;
+  constructor(private answerService:AnswerService,private postComponent:PostComponent,private authService:AuthService) { }
 
   ngOnInit(): void {
-    this.answerService.getVotes(this.answer["answer_id"]).subscribe(
-      response =>{
-        this.votes=response;
-      },
-      err =>{console.log(err);}
-    )
+    // console.log(this.answer_data);
+    // this.answerService.getVotes(this.answer["answer_id"]).subscribe(
+    //   response =>{
+    //     this.votes=response;
+    //   },
+    //   err =>{console.log(err);}
+    // );
+    
+    if(this.answer_data["user_id"]===this.authService.getUserId())
+    this.canDelete=true;
   }
-  ngOnChanges(): void {
-    this.ngOnInit();
-  }
+  // ngOnChanges(): void {
+  //   this.ngOnInit();
+  // }
 
   upvote(){
-    this.voteRequest["answer_id"]=this.answer["answer_id"];
+   this.voteRequest={
+      "user_id":this.authService.getUserId(),
+      "answer_id":this.answer_data["answer_id"]
+    }
     console.log(this.voteRequest);
     this.answerService.upvote(this.voteRequest).subscribe(
       response =>{
-        // console.log("upvoted");
-        this.ngOnInit();
+        console.log(response);
+        this.postComponent.refresh(this.answer_data["post_id"]);
+        // this.channelComponent.ngOnInit();
       },
       error=>{
-        // console.log("in error");
         console.log(error)
       }
     );
     
   }
   downvote(){
-    this.voteRequest["answer_id"]=this.answer["answer_id"];
+    this.voteRequest={
+      "user_id":this.authService.getUserId(),
+      "answer_id":this.answer_data["answer_id"]
+    }
     console.log(this.voteRequest);
     this.answerService.downvote(this.voteRequest).subscribe(
       response =>{
-        console.log("downvoted");
-        this.ngOnInit();
+        // console.log("downvoted");
+        this.postComponent.refresh(this.answer_data["post_id"]);
+        // this.channelComponent.ngOnInit();
       },
       error=>{
         console.log(error)
       }
     );;
+  }
+
+  deleteAnswer(){
+    this.answerService.deleteAnswer(this.answer_data["answer_id"]).subscribe(
+      response =>{
+       
+      },
+      error=>{
+        console.log(error);
+      }
+    )
+    window.location.reload();
   }
 
 }

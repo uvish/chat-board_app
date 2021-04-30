@@ -10,18 +10,31 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ChannelComponent implements OnInit {
 channel_id:any;
+channel_details:any;
 posts:any;
-  constructor(private postService:PostService,private activateRouter:ActivatedRoute) {
-    this.channel_id=this.activateRouter.snapshot.params.id;
-    this.postService.getAllPostsByChannel(this.channel_id).subscribe(
-      response =>{this.posts=response},
-      error=>{console.log(error)}
-    );
-    console.log(this.posts)
+no_posts:boolean=false;
+  constructor(private postService:PostService,private activateRouter:ActivatedRoute,private channelService:ChannelService) {
+    
    }
 
   ngOnInit(): void {
-    
+    this.channel_id=this.activateRouter.snapshot.params.id;
+    this.postService.getAllPostsByChannel(this.channel_id).subscribe(
+      response =>{this.posts=response
+      if(this.posts.length===0)
+       this.no_posts=true;
+      },
+      error=>{console.log(error)}
+    );
+    console.log(this.posts);
+
+    this.channelService.getChannelDetails(this.channel_id).subscribe(
+      response =>{
+        this.channel_details=response;
+      },
+      error=>{console.log(error);}
+    );
   }
+
 
 }
