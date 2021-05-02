@@ -12,18 +12,14 @@ export class ChannelsSidebarComponent implements OnInit {
  
   channels:any;
   ngOnInit(): void {
-
     this.channelsService.getAll().subscribe(
       response =>{
         this.channels=response;
-        console.log("channels");
-        console.log(response);
       },
       error=>{
         console.log(error);
       }
     );
-  //  console.log(this.channelsService.getAll());
   }
   
 }

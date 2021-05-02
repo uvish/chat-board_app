@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { JoinService } from '../services/join.service';
 import { PostService } from '../services/post.service';
 
 @Component({
@@ -11,7 +12,8 @@ export class DashboardComponent implements OnInit {
 posts:any;
 user_id:any;
 no_posts:boolean=false;
-  constructor(private postService: PostService,private authService: AuthService) {
+allRequests:any;
+  constructor(private postService: PostService,private authService: AuthService,private joinService: JoinService) {
    }
 
   ngOnInit(): void {
@@ -26,6 +28,17 @@ no_posts:boolean=false;
         console.log(error);
       }
     );
+    this.getChannelRequests();
+  }
+  getChannelRequests(){
+   this.joinService.getAllRequests(this.user_id).subscribe(
+     data =>{
+       console.log("requests");
+       this.allRequests=data;
+       console.log(data);
+      },
+     error =>{console.log(error);}
+     );
   }
 
 }

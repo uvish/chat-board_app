@@ -1,0 +1,24 @@
+<div id="requests" class="requests card">
+    <div class="topbar">
+        <h3>User Requests</h3>
+    </div>
+    <div class="requests_list">
+        <div *ngFor="let request of allRequests" class="request">
+            <div class="text_content">
+                <p id="user_name">{{request["user_name"]}}</p>
+            <p>&nbsp;wants to join&nbsp;</p>
+            <p id="channel_name">{{request["channel_name"]}}</p>
+            </div>
+            <div class="buttons">
+                <mat-icon (click)="accept(request.request_id)" aria-hidden="false" aria-label="Example home icon">done</mat-icon>
+            </div>
+            <div class="buttons">
+                <mat-icon (click)="deny(request.request_id)" aria-hidden="false" aria-label="Example home icon">close</mat-icon>
+            </div>
+           
+            
+        </div>
+       
+    </div>
+    
+  </div>

@@ -33,38 +33,48 @@
 
 
     <div class="topbar">
-        <div>
-            <h3 id="user_name">asked by: {{post_data["user_name"]}}</h3>
+                <div id="user">
+                <p id="postedby">Posted by </p>
+                <p id="username">{{post_data["user_name"]}}</p>
+                </div>
             <!-- <div> -->
-                <h3 id="date">{{post_data["created"] | date}}</h3>
-                <button *ngIf="canDelete" mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
-                    <mat-icon>more_vert</mat-icon>
-                  </button>
-               <mat-menu #menu="matMenu">
-               <button (click)="deletePost()" mat-menu-item>Delete</button>
-               <button mat-menu-item data-mdb-toggle="modal" data-mdb-target="#editModal">Edit</button>
-
-               </mat-menu>
+                <p id="date">{{post_data["created"] | timeago}}</p>
+                <div class="options">
+                    <div class="space"></div>
+                    <div class="button">
+                        <button *ngIf="canDelete" mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
+                            <mat-icon>more_vert</mat-icon>
+                          </button>
+                       <mat-menu #menu="matMenu">
+                       <button (click)="deletePost()" mat-menu-item>Delete</button>
+                       <button mat-menu-item data-mdb-toggle="modal" data-mdb-target="#editModal">Edit</button>
+        
+                       </mat-menu>
+                    </div>
+                </div>
+                
             <!-- </div> -->
-            
-        </div>
        
     </div>
 
-    <div class="text">
-        <a>{{post_data["title"]}}</a>
-        <p>{{post_data["content"]}}</p>
-        <!-- sort button -->
+    <div (click)="toggleAnswers()" class="text">
+        <p id="post_title">{{post_data["title"]}}</p>
+        <p id="post_content">{{post_data["content"]}}</p>
+       
+    </div>
+
+    <div *ngIf="answers_visible" class="answers">
+        <div class="sort_button">
+             <!-- sort button -->
         <button mat-button [matMenuTriggerFor]="sortmenu">
+            Sort Answers
             <mat-icon aria-hidden="false" aria-label="Example home icon">sort</mat-icon>
         </button>
         <mat-menu #sortmenu="matMenu">
         <button (click)="sortAnswersByDate()" mat-menu-item>Sort By Date</button>
         <button (click)="sortAnswersByUpvotes()" mat-menu-item>Sort By Most Helpful</button>
         </mat-menu>
-    </div>
-
-    <div class="answers">
+        </div>
        <answer *ngFor="let ans of answers" [answer_data]="ans"></answer>
     </div>
 

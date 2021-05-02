@@ -14,23 +14,23 @@ export class CreateSidebarComponent implements OnInit {
 
 
   constructor(private authService: AuthService,private _snackbar:MatSnackBar,private httpClient: HttpClient,private channelService: ChannelService,private postService: PostService) { }
-  
+  user_id=this.authService.getUserId();
   channel={
     "name":"",
     "description":"",
-    "admin_id":this.authService.getUserId(),
+    "admin_id":this.user_id,
   };
   post={
    "title":"",
    "content":"",
-   "user_id":this.authService.getUserId(),
+   "user_id":this.user_id,
    "channel_id":""
  }
   channels:any;
   x:any ;
    exists:any;
   ngOnInit(): void {
-    this.channelService.getAll().subscribe(
+    this.channelService.getAllJoined(this.user_id).subscribe(
       response =>{
         this.channels=response;
         console.log(response);
@@ -82,7 +82,7 @@ export class CreateSidebarComponent implements OnInit {
           console.log(error);
           this.openSnackBar(error,"Ok");
         }
-      )
+      );
     }
   }
   openSnackBar(message: string, action: string) {

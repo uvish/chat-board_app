@@ -14,7 +14,10 @@ export class ChannelService {
     });
   }
   getAll(){
-    return this.http.get(`http://localhost:8080/api/channel/all`,{responseType: 'json'});
+    return this.http.get(`http://localhost:8080/api/channel/all/`,{responseType: 'json'});
+  }
+  getAllJoined(user_id:any){
+    return this.http.get(`http://localhost:8080/api/channel/allJoined/`.concat(user_id),{responseType: 'json'});
   }
 
   getAdminIdFromChannel(channel_id:any){

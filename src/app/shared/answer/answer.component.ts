@@ -4,7 +4,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { PostComponent } from '../post/post.component';
 import { ChannelComponent } from 'src/app/channel/channel.component';
 import { AuthService } from 'src/app/services/auth.service';
-
 @Component({
   selector: 'answer',
   templateUrl: './answer.component.html',

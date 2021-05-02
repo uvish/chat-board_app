@@ -62,8 +62,7 @@ $text_color:#3F3F3F;
                     place-items: center;
                     height:100%;
                     width:100%;
-                    font-size:18px;
-                    font-weight:bold;
+                    font-size:14px;
                     color:white;
                 }
             }
@@ -116,6 +115,7 @@ $text_color:#3F3F3F;
         display:flex;
         flex-direction:column;
         align-items:center;
+        overflow: auto;
         brief-post{
            width:95%;
            margin-top:10px;
@@ -124,6 +124,12 @@ $text_color:#3F3F3F;
              font-size:40px;
              font-weight:300;
              margin-top:100px;
+         }
+         post{ 
+            width:90%;
+            border-radius: $border-radius;
+            margin-bottom:10px;
+            box-shadow: -1px 2px 15px rgba(0, 0, 0, 0.05);
          }
       }
       .right_sidebar{

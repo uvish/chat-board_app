@@ -37,6 +37,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BriefPostComponent } from './shared/brief-post/brief-post.component';
 import { MychannelsComponent } from './mychannels/mychannels.component';
 
+import { TimeagoModule } from 'ngx-timeago';
+import { RequestsComponent } from './requests/requests.component';
 
 
 
@@ -54,7 +56,8 @@ import { MychannelsComponent } from './mychannels/mychannels.component';
     AnswerComponent,
     LandingPageComponent,
     BriefPostComponent,
-    MychannelsComponent
+    MychannelsComponent,
+    RequestsComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ import { MychannelsComponent } from './mychannels/mychannels.component';
     ReactiveFormsModule,
     HttpClientModule,
     EditorModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    TimeagoModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

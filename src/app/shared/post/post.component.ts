@@ -25,6 +25,10 @@ export class PostComponent implements OnInit {
     "content":"",
     "title":""
   };
+  answers_visible:boolean=false;
+  toggleAnswers(){
+    this.answers_visible=!this.answers_visible;
+  }
 
   sorting_method:string="date";
   canDelete:boolean=false;
@@ -47,12 +51,12 @@ export class PostComponent implements OnInit {
     this.postService.getAllAnswersByPost(this.post_data["post_id"]).subscribe(
       response =>{
         this.answers=response;
+        console.log(response);
       },
       err =>{console.log(err);}
     );
    
-    if(this.admin_id===this.authService.getUserId())
-    this.canDelete=true;
+  //  ..........
 
     if(this.post_data["user_id"]===this.authService.getUserId())
     this.canDelete=true;
@@ -115,7 +119,14 @@ export class PostComponent implements OnInit {
     this.channelService.getAdminIdFromChannel(ch_id).subscribe(
       response =>{
         this.admin_id=response;
+        console.log("admin_id");
+        console.log(response);
         //return response;
+        if(this.admin_id===this.authService.getUserId())
+        {
+          this.canDelete=true;
+          console.log("this is admin");
+        }
       },
       err =>{console.log(err);}
     );    

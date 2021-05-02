@@ -5,8 +5,8 @@
             <div id="topbar">
             <p id="channel_name">{{channel_details["channel_name"]}}</p>
 
-            <div id="join_button">
-                <p id="join">Join +</p>
+            <div (click)="joinButton()" id="join_button">
+                <p id="join">{{joinStatus}}</p>
             </div>
 
             </div>
@@ -25,8 +25,8 @@
         </div>
     </div>
     <div class="main">
-        <!-- <post *ngFor="let post of posts" [post_data]="post" [channel_id]="channel_id"></post> -->
-       <brief-post *ngFor="let post of posts"  [post_data]="post"></brief-post>
+        <post *ngFor="let post of posts" [post_data]="post" [channel_id]="channel_id"></post>
+       <!-- <brief-post *ngFor="let post of posts"  [post_data]="post"></brief-post> -->
        <div class="noposts" *ngIf="no_posts">No Posts Yet !</div>
     </div>
     <div class="right_sidebar">
