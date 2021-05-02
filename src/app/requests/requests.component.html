@@ -10,10 +10,10 @@
             <p id="channel_name">{{request["channel_name"]}}</p>
             </div>
             <div class="buttons">
-                <mat-icon (click)="accept(request.request_id)" aria-hidden="false" aria-label="Example home icon">done</mat-icon>
+                <mat-icon id="accept" (click)="accept(request.request_id)" aria-hidden="false" aria-label="Example home icon">done</mat-icon>
             </div>
             <div class="buttons">
-                <mat-icon (click)="deny(request.request_id)" aria-hidden="false" aria-label="Example home icon">close</mat-icon>
+                <mat-icon id="reject" (click)="deny(request.request_id)" aria-hidden="false" aria-label="Example home icon">close</mat-icon>
             </div>
            
             

@@ -21,21 +21,24 @@ joinRequest:any;
     
    }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.channel_id=this.activateRouter.snapshot.params.id;
     this.joinRequest={
-      "user_id":this.authService.getUserId(),
+      "user_id":await this.authService.getUserId(),
       "channel_id":this.channel_id
     };
     this.getJoinStatus();
 
-    this.postService.getAllPostsByChannel(this.channel_id).subscribe(
-      response =>{this.posts=response
-      if(this.posts.length===0)
-       this.no_posts=true;
-      },
-      error=>{console.log(error)}
-    );
+    // this.postService.getAllPostsByChannel(this.channel_id).subscribe(
+    //   response =>{this.posts=response
+    //   if(this.posts.length===0)
+    //    this.no_posts=true;
+    //   },
+    //   error=>{console.log(error)}
+    // );
+    this.posts=await this.postService.getAllPostsByChannel(this.channel_id).toPromise();
+     if(this.posts.length==0)this.no_posts=true;
+
 
     this.channelService.getChannelDetails(this.channel_id).subscribe(
       response =>{

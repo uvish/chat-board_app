@@ -1,62 +1,47 @@
 <div class="create card">
-    <div class="button" data-mdb-toggle="modal" data-mdb-target="#postModal">+ Create Post</div>
-    <!-- Modal Create Post -->
-         
-      <div class="modal top fade" id="postModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
-          <div class="modal-dialog modal-xl ">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
-                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body post-modal-body">
+
+    <div class="button" (click)="togglePostMode()">+ Create Post</div>
+    <div *ngIf="createPostMode" class="post_create">
+      <div class="body">
         
-                  <form (ngSubmit)="createPost()">
-                      <input type="text" Placeholder="Title" name="title" [(ngModel)]="post.title">
-                      <select class="browser-default custom-select" name="channel" [(ngModel)]="post.channel_id">
-                          <option selected disabled [value]="">Select Channel</option>
-                          <option *ngFor="let channel of channels" [value]="channel.channel_id" >{{channel.name}}</option>
-                  
-                        </select>
-                      <textarea [(ngModel)]="post.content" name="question" id="question" cols="30" rows="10"></textarea>
-                      <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                          Close
-                        </button>
-                        <button type="button" type="submit" class="btn btn-primary">Create</button>
-                  </form>
+        <form (ngSubmit)="createPost()">
+            <input type="text" Placeholder="Title" name="title" [(ngModel)]="post.title">
+            <!-- <select class="browser-default custom-select" name="channel" [(ngModel)]="post.channel_id">
+                <option selected disabled [value]="">Select Channel</option>
+                <option *ngFor="let channel of channels" [value]="channel.channel_id" >{{channel.name}}</option>
+              </select> -->
 
-              </div>
-              <div class="modal-footer">
-              
-              </div>
-            </div>
-          </div>
+              <mat-select placeholder="Select Channel" class="browser-default custom-select" name="channel" [(ngModel)]="post.channel_id">
+                <mat-option selected disabled [value]="">Select Channel</mat-option>
+                <mat-option *ngFor="let channel of channels" [value]="channel.channel_id">
+                  {{channel.name}}
+                </mat-option>
+              </mat-select>
+
+            <textarea [(ngModel)]="post.content" Placeholder="Ask your Question here ..!" name="question" id="question" cols="30" rows="10"></textarea>
+            <div class="buttons">
+              <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+              <button type="button" type="submit" class="btn btn-primary">Create</button>
+            </div>   
+        </form>
+
+    </div>
+    </div>
+
+
+   <div class="button" data-mdb-toggle="modal" (click)="toggleChannelMode()" >+ Create Channel</div>
+   <div *ngIf="createChannelMode" class="channel_create">
+    <div class="modal-body">
+      <div class="create_channel">
+          <input type="text" [(ngModel)]="channel.name" Placeholder="Channel Name">
+          <input type="text" [(ngModel)]="channel.description" Placeholder="Channel Description">
         </div>
-          <!-- Modal Create Post End -->
-
-   <div class="button" data-mdb-toggle="modal" data-mdb-target="#channelModal" >+ Create Channel</div>
-   <!-- Modal Create Channel -->
-   <div class="modal fade" id="channelModal" tabindex="-1" aria-labelledby="channelModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Create Channel</h5>
-          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="create_channel">
-                <input type="text" [(ngModel)]="channel.name" Placeholder="Channel Name">
-                <input type="text" [(ngModel)]="channel.description" Placeholder="Channel Description">
-              </div>
-          </div>
-          <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-              Close
-          </button>
-          <button type="button" (click)="createChannel()" class="btn btn-primary">Create</button>
-          </div>
       </div>
+      <div class="buttons">
+            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                Close
+            </button>
+            <button type="button" (click)="createChannel()" class="btn btn-primary">Create</button>
       </div>
-      </div>
-      <!-- Modal Create Channel End -->
+   </div>
 </div>

@@ -22,4 +22,7 @@ export class AnswerService {
   deleteAnswer(answer_id:any){
     return this.http.post(`http://localhost:8080/api/answer/delete/`.concat(answer_id),{responseType: 'json'});
   }
+  getAnswerAdmin(answer_id:any){
+    return this.http.get(`http://localhost:8080/api/answers/getAdminIdByAnswer/`.concat(answer_id),{responseType: 'text'});
+  }
 }

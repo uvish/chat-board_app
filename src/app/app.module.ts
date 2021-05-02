@@ -24,6 +24,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 // Angular Forms
 import { ReactiveFormsModule } from '@angular/forms';
@@ -77,6 +79,7 @@ import { RequestsComponent } from './requests/requests.component';
     HttpClientModule,
     EditorModule,
     MatPaginatorModule,
+    MatDialogModule,
     TimeagoModule.forRoot()
   ],
   providers: [],

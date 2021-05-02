@@ -16,10 +16,10 @@ export class NavbarComponent implements OnInit {
   loggedIn:boolean = false;
   username:any;
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     if(this.authService.isLoggedIn()){
       this.loggedIn=true;
-      this.username=localStorage.getItem("username");
+      this.username=await this.authService.getUsername();
     }
   }
 

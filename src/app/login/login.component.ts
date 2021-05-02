@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,14 +14,13 @@ export class LoginComponent implements OnInit {
     "password":"",
   }
   hide=true;
-  constructor(private _snackbar:MatSnackBar,private authService:AuthService) {
+  constructor(private _snackbar:MatSnackBar,private authService:AuthService,private router:Router) {
   }
 
   ngOnInit(): void {
   }
   
   login(){
-    console.log(this.ValidateEmail(this.credentials["email"]));
     if(this.credentials["password"] ==='' || this.credentials["email"] ==='')
     {
            this.openSnackBar("Fields can't be empty","Ok")
@@ -34,13 +34,12 @@ export class LoginComponent implements OnInit {
     else{
           this.authService.login(this.credentials).subscribe(
             response=>{
-              console.log(response);
-                  this.authService.save_login(response);
-                  this.openSnackBar(response,"Ok");
+                  this.authService.save_token(response);
+                  window.location.href="/dashboard";
             },
             error=>{
               console.log(error)
-              this.openSnackBar(error["error"],"Ok");
+              this.openSnackBar(error["User Not Found"],"Ok");
             } 
           )
        }

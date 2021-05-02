@@ -13,13 +13,17 @@ export class RequestsComponent implements OnInit {
   constructor(private _snackbar:MatSnackBar,private joinService:JoinService,private dashboardComponent:DashboardComponent) { }
 
   ngOnInit(): void {
+ 
   }
+
+
   accept(request_id:any){
   this.joinService.acceptRequest(request_id).subscribe(
     response =>{
       console.log(response);
       this.dashboardComponent.getChannelRequests();
       this.openSnackBar("Request Accepted","OK");
+      this.ngOnInit();
     },
     error =>{
       console.log(error);
@@ -33,6 +37,7 @@ export class RequestsComponent implements OnInit {
         console.log(response);
         this.dashboardComponent.getChannelRequests();
         this.openSnackBar("Request Denied","OK");
+        this.ngOnInit();
       },
       error =>{
         console.log(error);

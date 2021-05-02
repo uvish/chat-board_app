@@ -1,4 +1,5 @@
 import { Component,Input, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 import { ChannelService } from '../services/channel.service';
 
 @Component({
@@ -7,12 +8,13 @@ import { ChannelService } from '../services/channel.service';
   styleUrls: ['./mychannels.component.scss']
 })
 export class MychannelsComponent implements OnInit {
-@Input() user_id:any;
+user_id:any;
 channels:any;
-  constructor(private channelService:ChannelService) { }
+  constructor(private channelService:ChannelService,private authService:AuthService) { }
 
-  ngOnInit(): void {
-    this.channelService.getAllChannelsByUser(this.user_id).subscribe(
+   async ngOnInit() {
+    this.user_id =await this.authService.getUserId();
+   this.channelService.getAllChannelsByUser(this.user_id).subscribe(
       response =>{
         this.channels = response;
         console.log("my channels");

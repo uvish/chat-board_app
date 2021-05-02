@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MychannelsComponent } from '../mychannels/mychannels.component';
 import { AuthService } from '../services/auth.service';
 import { JoinService } from '../services/join.service';
 import { PostService } from '../services/post.service';
@@ -16,8 +17,8 @@ allRequests:any;
   constructor(private postService: PostService,private authService: AuthService,private joinService: JoinService) {
    }
 
-  ngOnInit(): void {
-    this.user_id=this.authService.getUserId();
+  async ngOnInit(): Promise<void> {
+    this.user_id=await this.authService.getUserId();
     this.postService.getAllPostsByUser(this.user_id).subscribe(
       response =>{
        this.posts=response;
@@ -30,12 +31,11 @@ allRequests:any;
     );
     this.getChannelRequests();
   }
+  
   getChannelRequests(){
    this.joinService.getAllRequests(this.user_id).subscribe(
      data =>{
-       console.log("requests");
        this.allRequests=data;
-       console.log(data);
       },
      error =>{console.log(error);}
      );

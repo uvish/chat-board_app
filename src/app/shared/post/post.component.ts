@@ -1,9 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { PostService } from 'src/app/services/post.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ChannelService } from 'src/app/services/channel.service';
 import { ThisReceiver } from '@angular/compiler';
 import { AuthService } from 'src/app/services/auth.service';
+import { MatDialog,MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+
+export interface editedPost{
+  "post_id":string,
+  "content":string,
+  "title":string
+};
+
 
 @Component({
   selector: 'post',
@@ -25,6 +34,15 @@ export class PostComponent implements OnInit {
     "content":"",
     "title":""
   };
+  edit_mode:boolean=true;
+  toggle_edit_mode(){
+    this.edit_mode=!this.edit_mode;
+  }
+  
+ 
+
+
+
   answers_visible:boolean=false;
   toggleAnswers(){
     this.answers_visible=!this.answers_visible;
@@ -32,8 +50,12 @@ export class PostComponent implements OnInit {
 
   sorting_method:string="date";
   canDelete:boolean=false;
-  constructor(private postService:PostService,private _snackbar:MatSnackBar,private channelService:ChannelService,private authService:AuthService) { }
-  ngOnInit(): void {
+  user_id:any;
+  constructor(private dialog:MatDialog,private postService:PostService,private _snackbar:MatSnackBar,private channelService:ChannelService,private authService:AuthService) { }
+
+  async ngOnInit(): Promise<void> {
+  const editModal=document.getElementById("editModal");
+  this.user_id =await this.authService.getUserId();
 
     this.answer={
       "answer":"",
@@ -46,6 +68,9 @@ export class PostComponent implements OnInit {
       "title":this.post_data["title"]
     };
 
+    
+
+
     this.getChannelAdmin(this.channel_id);
 
     this.postService.getAllAnswersByPost(this.post_data["post_id"]).subscribe(
@@ -56,11 +81,10 @@ export class PostComponent implements OnInit {
       err =>{console.log(err);}
     );
    
-  //  ..........
-
-    if(this.post_data["user_id"]===this.authService.getUserId())
-    this.canDelete=true;
+    if(this.post_data["user_id"]==this.user_id)
+   { this.canDelete=true;}
   }
+
 
   refresh(post_id:number){
     this.postService.getAllAnswersByPost(post_id).subscribe(
@@ -83,7 +107,7 @@ export class PostComponent implements OnInit {
     this.postService.editPost(this.editedPost).subscribe(
       response =>{window.location.reload();},
       err =>{console.log(err);}
-    )
+    );
   }
   
   sortAnswersByDate(){
@@ -108,6 +132,7 @@ export class PostComponent implements OnInit {
   }
 
   refreshEditDetails(){
+    this.toggle_edit_mode();
     this.ngOnInit();
   }
 
@@ -122,10 +147,9 @@ export class PostComponent implements OnInit {
         console.log("admin_id");
         console.log(response);
         //return response;
-        if(this.admin_id===this.authService.getUserId())
+        if(this.admin_id==this.user_id)
         {
           this.canDelete=true;
-          console.log("this is admin");
         }
       },
       err =>{console.log(err);}
@@ -133,16 +157,16 @@ export class PostComponent implements OnInit {
   }
   
 
-  postAnswer(){
+ postAnswer(){
     this.answer["post_id"] = this.post_data["post_id"];
-    this.answer["user_id"] =this.authService.getUserId();
+   this.answer["user_id"] =this.user_id;
     console.log(this.answer);
     this.postService.postAnswer(this.answer).subscribe(
       response =>{
         this.ngOnInit();
       },
       err =>{}
-    )
+    );
   }
 
   deletePost(){
@@ -163,5 +187,9 @@ export class PostComponent implements OnInit {
       duration: 2000,
     });
   }
+
+
  
 }
+
+

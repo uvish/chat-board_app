@@ -14,9 +14,11 @@ export class AnswerComponent implements OnInit {
   canDelete:boolean = false;
   // votes:any;
   voteRequest:any;
+  user_id:any;
   constructor(private answerService:AnswerService,private postComponent:PostComponent,private authService:AuthService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.user_id=await this.authService.getUserId();
     // console.log(this.answer_data);
     // this.answerService.getVotes(this.answer["answer_id"]).subscribe(
     //   response =>{
@@ -25,7 +27,10 @@ export class AnswerComponent implements OnInit {
     //   err =>{console.log(err);}
     // );
     
-    if(this.answer_data["user_id"]===this.authService.getUserId())
+    if(this.answer_data["user_id"]==this.user_id){
+    this.canDelete=true;
+    }
+    if(this.answerService.getAnswerAdmin(this.answer_data["answer_id"] == this.user_id))
     this.canDelete=true;
   }
   // ngOnChanges(): void {
@@ -34,7 +39,7 @@ export class AnswerComponent implements OnInit {
 
   upvote(){
    this.voteRequest={
-      "user_id":this.authService.getUserId(),
+      "user_id":this.user_id,
       "answer_id":this.answer_data["answer_id"]
     }
     console.log(this.voteRequest);
@@ -52,7 +57,7 @@ export class AnswerComponent implements OnInit {
   }
   downvote(){
     this.voteRequest={
-      "user_id":this.authService.getUserId(),
+      "user_id":this.user_id,
       "answer_id":this.answer_data["answer_id"]
     }
     console.log(this.voteRequest);

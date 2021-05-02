@@ -1,6 +1,6 @@
 <div class="container">
   <div class="left">
-      <img src="assets/logo.png" alt="ChatBoard">
+      <img src="assets/Logo2.svg" alt="ChatBoard">
   </div>
   <div class="right">
      <!-- <div class="details"> -->
@@ -35,7 +35,7 @@
       
                   <mat-form-field class="example-full-width">
                     <mat-label>Password</mat-label>
-                    <input matInput required placeholder="Password" [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="credentials.password"  type="password" appearance="outline">
+                    <input matInput required placeholder="Password must be 6 characters ,Alphanumeric and MixedCase" [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="credentials.password"  type="password" appearance="outline">
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </mat-form-field>
 

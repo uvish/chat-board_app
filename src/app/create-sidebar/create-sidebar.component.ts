@@ -14,22 +14,41 @@ export class CreateSidebarComponent implements OnInit {
 
 
   constructor(private authService: AuthService,private _snackbar:MatSnackBar,private httpClient: HttpClient,private channelService: ChannelService,private postService: PostService) { }
-  user_id=this.authService.getUserId();
-  channel={
+  
+  channels:any;
+  x:any ;
+   exists:any;
+   user_id:any;
+   channel:any;
+   post:any;
+
+  createPostMode:boolean=false;
+  togglePostMode(){
+    this.createPostMode=!this.createPostMode;
+    if(this.createChannelMode)
+    this.createChannelMode=!this.createChannelMode;
+  }
+  createChannelMode:boolean=false;
+  toggleChannelMode(){
+    this.createChannelMode=!this.createChannelMode;
+    if(this.createPostMode)
+    this.createPostMode=!this.createPostMode;
+  }
+
+
+  async ngOnInit(): Promise<void> {
+    this.user_id=await this.authService.getUserId();
+ this.channel={
     "name":"",
     "description":"",
     "admin_id":this.user_id,
   };
-  post={
+  this.post={
    "title":"",
    "content":"",
    "user_id":this.user_id,
    "channel_id":""
- }
-  channels:any;
-  x:any ;
-   exists:any;
-  ngOnInit(): void {
+ };
     this.channelService.getAllJoined(this.user_id).subscribe(
       response =>{
         this.channels=response;
@@ -55,9 +74,10 @@ export class CreateSidebarComponent implements OnInit {
          error=>{
           this.openSnackBar(error,"OK")
          }
-      )
+      );
+      window.location.reload();
    }
-   window.location.reload();
+   
   }
 
   createChannel(){

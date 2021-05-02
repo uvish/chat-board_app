@@ -1,9 +1,9 @@
-<div class="post">
+<div class="post" id="post.post_id">
 
-     <!--Qusetion Edit Modal -->
-     <div class="modal top fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+     <!--Question Edit Modal -->
+     <div class="modal top fade {{editedPost.post_id}}" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
         <div class="modal-dialog modal-xl ">
-        <div class="modal-content">
+        <div class="modal-content" >
             <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
             <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
@@ -16,7 +16,7 @@
                   </div>
                 
                   <div class="form-outline">
-                    <h2>Post Title</h2>
+                    <h2>Post Content</h2>
                     <textarea class="form-control" id="textAreaExample" [(ngModel)]="editedPost.content" rows="4"></textarea>
                     <!-- <label class="form-label" for="textAreaExample">Question</label> -->
                   </div>
@@ -47,7 +47,7 @@
                           </button>
                        <mat-menu #menu="matMenu">
                        <button (click)="deletePost()" mat-menu-item>Delete</button>
-                       <button mat-menu-item data-mdb-toggle="modal" data-mdb-target="#editModal">Edit</button>
+                       <button mat-menu-item data-mdb-toggle="modal" (click)="toggle_edit_mode()" >Edit</button>
         
                        </mat-menu>
                     </div>
@@ -57,11 +57,31 @@
        
     </div>
 
-    <div (click)="toggleAnswers()" class="text">
+    <div *ngIf="edit_mode" (click)="toggleAnswers()" class="text">
         <p id="post_title">{{post_data["title"]}}</p>
         <p id="post_content">{{post_data["content"]}}</p>
        
     </div>
+
+    <div *ngIf="!edit_mode" class="edit_bar">
+    <div class="modal-body">
+        <div class="form-outline">
+            <h2>Post Title</h2>
+            <input type="text" id="typeText" [(ngModel)]="editedPost.title" class="form-control" placeholder="Post Title" />
+            <!-- <label class="form-label" for="typeText">Post Title</label> -->
+          </div>
+        
+          <div class="form-outline">
+            <h2>Post Content</h2>
+            <textarea class="form-control" id="textAreaExample" [(ngModel)]="editedPost.content" rows="4"></textarea>
+            <!-- <label class="form-label" for="textAreaExample">Question</label> -->
+          </div>
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="refreshEditDetails()" >Close</button>
+    <button type="button" class="btn btn-primary" (click)="saveEditedPost()">Save changes</button>
+    </div>
+   </div>
 
     <div *ngIf="answers_visible" class="answers">
         <div class="sort_button">
