@@ -1,14 +1,16 @@
+import { fadeIn, fadeOut } from './animations';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ChannelService } from '../services/channel.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { PostService } from '../services/post.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'create-sidebar',
   templateUrl: './create-sidebar.component.html',
-  styleUrls: ['./create-sidebar.component.scss']
+  styleUrls: ['./create-sidebar.component.scss'],
+  animations: [fadeIn,fadeOut]
 })
 export class CreateSidebarComponent implements OnInit {
 
@@ -58,6 +60,7 @@ export class CreateSidebarComponent implements OnInit {
         console.log(error);
       }
     );
+
   }
 
 

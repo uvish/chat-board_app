@@ -102,3 +102,29 @@ $text_color:#3F3F3F;
         flex-direction:column;
     }
 }
+
+
+
+.sample-toolbar
+{
+    border:solid 1px #ddd;
+    background:#f4f4f4;
+    padding: 5px;
+    border-radius:3px;
+}
+
+.sample-toolbar > span
+{
+    cursor:pointer;
+}
+
+.sample-toolbar > span:hover
+{
+    text-decoration:underline;
+}
+.editor
+        {
+			border:solid 1px #ccc;
+			padding: 20px;
+			min-height:200px;
+        }

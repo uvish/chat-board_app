@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { fadeIn, fadeOut } from '../shared/animations/animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [fadeIn, fadeOut]
 })
 export class LoginComponent implements OnInit {
   credentials={
@@ -39,7 +41,7 @@ export class LoginComponent implements OnInit {
             },
             error=>{
               console.log(error)
-              this.openSnackBar(error["User Not Found"],"Ok");
+              this.openSnackBar("User Not Found","Ok");
             } 
           )
        }

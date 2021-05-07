@@ -28,5 +28,8 @@ export class PostService {
   editPost(editedPost:any){
     return this.http.post(`http://localhost:8080/api/posts/edit`,editedPost,{responseType:'json'});
   }
+  getRecent(){
+    return this.http.get(`http://localhost:8080/api/posts/getRecent`,{responseType:'json'});
+  }
 
 }

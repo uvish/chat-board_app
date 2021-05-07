@@ -6,6 +6,7 @@ import { ThisReceiver } from '@angular/compiler';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog,MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { fadeIn, fadeOut } from '../animations/animations';
 
 export interface editedPost{
   "post_id":string,
@@ -17,7 +18,8 @@ export interface editedPost{
 @Component({
   selector: 'post',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
+  styleUrls: ['./post.component.scss'],
+  animations: [fadeIn, fadeOut]
 })
 export class PostComponent implements OnInit {
   @Input() post_data:any;

@@ -31,7 +31,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 
 // Communication
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ChannelComponent } from './channel/channel.component';
 import { PostComponent } from './shared/post/post.component';
 import { AnswerComponent } from './shared/answer/answer.component';
@@ -41,6 +41,9 @@ import { MychannelsComponent } from './mychannels/mychannels.component';
 
 import { TimeagoModule } from 'ngx-timeago';
 import { RequestsComponent } from './requests/requests.component';
+import { RecentPostsComponent } from './recent-posts/recent-posts.component';
+import { TokenInterceptor } from './services/auth.interceptor';
+
 
 
 
@@ -59,7 +62,8 @@ import { RequestsComponent } from './requests/requests.component';
     LandingPageComponent,
     BriefPostComponent,
     MychannelsComponent,
-    RequestsComponent
+    RequestsComponent,
+    RecentPostsComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +86,11 @@ import { RequestsComponent } from './requests/requests.component';
     MatDialogModule,
     TimeagoModule.forRoot()
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,24 +14,41 @@
             <p id="admin_name">Admin: {{channel_details["admin"]}}</p>
            
         </div>
+      
+       <div class="home_buttons">
+        <!-- home card -->
         <div class="home card" [routerLink]="['']">
             <div class="icon">
                 <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
             </div>
             <div class="text">
                 <p>Home</p>
-            </div>
-            
+            </div>  
         </div>
+        <!-- home card end -->
+        <!-- dashboard card -->
+        <div class="dashboard card" [routerLink]="['/dashboard']">
+            <div class="icon">
+                <mat-icon aria-hidden="false" aria-label="Example home icon">space_dashboard</mat-icon>
+            </div>
+            <div class="text">
+                <p>Dashboard</p>
+            </div>
+            </div>
+        <!-- dashboard card end -->
+    </div>
+
+
     </div>
     <div class="main">
-        <post *ngFor="let post of posts" [post_data]="post" [channel_id]="channel_id"></post>
+        <post @fadeIn *ngFor="let post of posts" [post_data]="post" [channel_id]="channel_id"></post>
        <!-- <brief-post *ngFor="let post of posts"  [post_data]="post"></brief-post> -->
        <div class="noposts" *ngIf="no_posts">No Posts Yet !</div>
     </div>
     <div class="right_sidebar">
         <create-sidebar></create-sidebar>
         <channels-sidebar></channels-sidebar>
+        <recent-posts></recent-posts>
     </div>
 </div>
 

@@ -13,7 +13,7 @@ export class RequestsComponent implements OnInit {
   constructor(private _snackbar:MatSnackBar,private joinService:JoinService,private dashboardComponent:DashboardComponent) { }
 
   ngOnInit(): void {
- 
+
   }
 
 

@@ -3,17 +3,20 @@ import { MychannelsComponent } from '../mychannels/mychannels.component';
 import { AuthService } from '../services/auth.service';
 import { JoinService } from '../services/join.service';
 import { PostService } from '../services/post.service';
+import { fadeIn, fadeOut } from '../shared/animations/animations';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  animations: [fadeIn, fadeOut]
 })
 export class DashboardComponent implements OnInit {
 posts:any;
 user_id:any;
 no_posts:boolean=false;
 allRequests:any;
+
   constructor(private postService: PostService,private authService: AuthService,private joinService: JoinService) {
    }
 
@@ -40,5 +43,7 @@ allRequests:any;
      error =>{console.log(error);}
      );
   }
+
+
 
 }

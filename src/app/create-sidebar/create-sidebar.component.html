@@ -1,7 +1,7 @@
 <div class="create card">
 
     <div class="button" (click)="togglePostMode()">+ Create Post</div>
-    <div *ngIf="createPostMode" class="post_create">
+    <div *ngIf="createPostMode" @fadeIn @fadeOut class="post_create">
       <div class="body">
         
         <form (ngSubmit)="createPost()">
@@ -17,6 +17,11 @@
                   {{channel.name}}
                 </mat-option>
               </mat-select>
+            
+
+              <!-- text editor -->
+             
+              <!-- text editor end -->
 
             <textarea [(ngModel)]="post.content" Placeholder="Ask your Question here ..!" name="question" id="question" cols="30" rows="10"></textarea>
             <div class="buttons">
@@ -30,7 +35,7 @@
 
 
    <div class="button" data-mdb-toggle="modal" (click)="toggleChannelMode()" >+ Create Channel</div>
-   <div *ngIf="createChannelMode" class="channel_create">
+   <div *ngIf="createChannelMode"  @fadeIn @fadeOut class="channel_create">
     <div class="modal-body">
       <div class="create_channel">
           <input type="text" [(ngModel)]="channel.name" Placeholder="Channel Name">

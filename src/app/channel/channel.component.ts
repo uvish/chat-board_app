@@ -4,11 +4,13 @@ import { PostService } from '../services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JoinService } from '../services/join.service';
 import { AuthService } from '../services/auth.service';
+import { fadeIn, fadeOut } from '../shared/animations/animations';
 
 @Component({
   selector: 'app-channel',
   templateUrl: './channel.component.html',
-  styleUrls: ['./channel.component.scss']
+  styleUrls: ['./channel.component.scss'],
+  animations: [fadeIn, fadeOut]
 })
 export class ChannelComponent implements OnInit {
 channel_id:any;

@@ -41,6 +41,8 @@ $text_color:#3F3F3F;
             // padding:10px;
             margin-top: 10px;
         }
+        .home_buttons{
+            width:100%;
         .home{
             cursor: pointer;
             height:50px;
@@ -71,6 +73,8 @@ $text_color:#3F3F3F;
            }
         }
     }
+      
+    }
     .main{
         height:100%;
         width:60%;
@@ -90,7 +94,7 @@ $text_color:#3F3F3F;
           post{
               width:90%;
               border-radius: $border-radius;
-              margin-bottom:10px;
+              margin-top:10px;
               box-shadow: -1px 2px 15px rgba(0, 0, 0, 0.05);
           }
     }
@@ -99,6 +103,7 @@ $text_color:#3F3F3F;
         width:20%;
         margin-right:20px;
         overflow-y: auto;
+        overflow-x: hidden;
       }
 }
 // .page{

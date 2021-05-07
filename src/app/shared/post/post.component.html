@@ -1,7 +1,7 @@
 <div class="post" id="post.post_id">
 
      <!--Question Edit Modal -->
-     <div class="modal top fade {{editedPost.post_id}}" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+     <!-- <div class="modal top fade {{editedPost.post_id}}" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
         <div class="modal-dialog modal-xl ">
         <div class="modal-content" >
             <div class="modal-header">
@@ -12,13 +12,11 @@
                 <div class="form-outline">
                     <h2>Post Title</h2>
                     <input type="text" id="typeText" [(ngModel)]="editedPost.title" class="form-control" placeholder="Post Title" />
-                    <!-- <label class="form-label" for="typeText">Post Title</label> -->
                   </div>
                 
                   <div class="form-outline">
                     <h2>Post Content</h2>
                     <textarea class="form-control" id="textAreaExample" [(ngModel)]="editedPost.content" rows="4"></textarea>
-                    <!-- <label class="form-label" for="textAreaExample">Question</label> -->
                   </div>
             </div>
             <div class="modal-footer">
@@ -27,7 +25,7 @@
             </div>
         </div>
         </div>
-    </div>
+    </div> -->
     <!-- Question Edit Modal End -->
 
 
@@ -36,7 +34,7 @@
                 <div id="user">
                 <p id="postedby">Posted by </p>
                 <p id="username">{{post_data["user_name"]}}</p>
-                </div>
+                 </div>
             <!-- <div> -->
                 <p id="date">{{post_data["created"] | timeago}}</p>
                 <div class="options">
@@ -83,7 +81,7 @@
     </div>
    </div>
 
-    <div *ngIf="answers_visible" class="answers">
+    <div @fadeIn *ngIf="answers_visible" class="answers">
         <div class="sort_button">
              <!-- sort button -->
         <button mat-button [matMenuTriggerFor]="sortmenu">

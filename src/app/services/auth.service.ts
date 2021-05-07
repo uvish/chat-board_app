@@ -76,4 +76,7 @@ export class AuthService {
         this.username=response.split(":")[0];
        return this.username;
   }
+  getToken(){
+    return localStorage.getItem('token');
+  }
 }

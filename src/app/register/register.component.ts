@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { fadeIn, fadeOut } from '../shared/animations/animations';
 
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  animations: [fadeIn, fadeOut]
 })
 export class RegisterComponent implements OnInit {
   credentials={
