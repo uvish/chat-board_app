@@ -13,6 +13,10 @@ export class RecentPostsComponent implements OnInit {
   recentPosts:any;
   noPosts:boolean = false;
   ngOnInit(): void {
+    this.getRecent();
+    setInterval(() =>{  this.getRecent(); }, 10000);
+  }
+  getRecent(){
     this.postService.getRecent().subscribe(
       response=>{
         this.recentPosts=response;

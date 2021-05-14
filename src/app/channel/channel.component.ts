@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { JoinService } from '../services/join.service';
 import { AuthService } from '../services/auth.service';
 import { fadeIn, fadeOut } from '../shared/animations/animations';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-channel',
@@ -19,7 +20,7 @@ posts:any;
 no_posts:boolean=false;
 joinStatus:String="";
 joinRequest:any;
-  constructor(private authService:AuthService,private joinService:JoinService,private postService:PostService,private activateRouter:ActivatedRoute,private channelService:ChannelService) {
+  constructor(private _snackbar:MatSnackBar,private router:Router, private authService:AuthService,private joinService:JoinService,private postService:PostService,private activateRouter:ActivatedRoute,private channelService:ChannelService) {
     
    }
 
@@ -30,6 +31,8 @@ joinRequest:any;
       "channel_id":this.channel_id
     };
     this.getJoinStatus();
+    setInterval(() =>{  this.getJoinStatus(); }, 10000);
+    // this.getJoinStatus();
 
     // this.postService.getAllPostsByChannel(this.channel_id).subscribe(
     //   response =>{this.posts=response
@@ -60,6 +63,7 @@ joinRequest:any;
      },
      error =>{console.log(error);}
    );
+
   }
 
   joinButton(){
@@ -74,6 +78,23 @@ joinRequest:any;
       }
     );
     }
+  }
+
+  deleteChannel(){
+    this.channelService.deleteChannel(this.channel_id).subscribe(
+      response =>{
+        this.openSnackBar("Channel deleted","Ok");
+        this.router.navigate(['/dashboard']);
+
+      },
+      error =>{console.log(error);}
+    );
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackbar.open(message, action, {
+      duration: 2000,
+    });
   }
  
 

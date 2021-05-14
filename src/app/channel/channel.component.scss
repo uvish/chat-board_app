@@ -44,7 +44,7 @@ $text_color:#3F3F3F;
             #channel_name{
                 width:70%;
                 margin: 20px;
-                font-size:40px;
+                font-size:35px;
                 font-weight:bold;
                 line-height: 40px;
             }
@@ -80,6 +80,18 @@ $text_color:#3F3F3F;
          #admin_name{
             margin: 20px;
             font-size:16px;
+         }
+         .delete_button{
+             position: absolute;
+             bottom:20px;
+             right:20px;
+             cursor: pointer;
+         }
+         .delete-tooltip-red{
+            background: #b71c1c;
+         }
+         .delete_button{
+            
          }
      }
     .home_buttons{

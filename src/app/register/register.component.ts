@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { fadeIn, fadeOut } from '../shared/animations/animations';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class RegisterComponent implements OnInit {
 
 
   
-  constructor(private _snackbar:MatSnackBar,private authService:AuthService) {
+  constructor(private _snackbar:MatSnackBar,private authService:AuthService,private router:Router) {
    }
 
   ngOnInit(): void { 
@@ -46,6 +47,7 @@ export class RegisterComponent implements OnInit {
             response=>{
               console.log(response);
                   this.openSnackBar(response,"Ok");
+                  this.router.navigate(['/login']);
             },
             error=>{
               console.log(error)

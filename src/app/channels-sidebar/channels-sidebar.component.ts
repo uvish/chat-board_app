@@ -12,6 +12,10 @@ export class ChannelsSidebarComponent implements OnInit {
  
   channels:any;
   ngOnInit(): void {
+    this.getAllChannels();
+    setInterval(() =>{  this.getAllChannels(); }, 10000);
+  }
+  getAllChannels(){
     this.channelsService.getAll().subscribe(
       response =>{
         this.channels=response;

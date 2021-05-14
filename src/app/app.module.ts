@@ -25,6 +25,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 // Angular Forms
@@ -43,6 +44,8 @@ import { TimeagoModule } from 'ngx-timeago';
 import { RequestsComponent } from './requests/requests.component';
 import { RecentPostsComponent } from './recent-posts/recent-posts.component';
 import { TokenInterceptor } from './services/auth.interceptor';
+
+
 
 
 
@@ -84,6 +87,7 @@ import { TokenInterceptor } from './services/auth.interceptor';
     EditorModule,
     MatPaginatorModule,
     MatDialogModule,
+    MatTooltipModule,
     TimeagoModule.forRoot()
   ],
   providers: [{

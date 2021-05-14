@@ -12,7 +12,10 @@
             </div>
             <p id="channel_description">{{channel_details["channel_description"]}}</p>
             <p id="admin_name">Admin: {{channel_details["admin"]}}</p>
-           
+            <mat-icon (click)="deleteChannel()"
+            matTooltip="Delete Channel"
+            matTooltipClass="delete-tooltip-red"
+             class="delete_button" *ngIf="joinStatus=='Admin'" aria-hidden="false" aria-label="delete icon">delete</mat-icon>
         </div>
       
        <div class="home_buttons">

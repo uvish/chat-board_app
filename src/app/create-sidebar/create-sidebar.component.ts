@@ -51,6 +51,19 @@ export class CreateSidebarComponent implements OnInit {
    "user_id":this.user_id,
    "channel_id":""
  };
+    // this.channelService.getAllJoined(this.user_id).subscribe(
+    //   response =>{
+    //     this.channels=response;
+    //     console.log(response);
+    //   },
+    //   error=>{
+    //     console.log(error);
+    //   }
+    // );
+    setInterval(() =>{  this.getAllJoinedChannels(); }, 1000);
+  }
+
+  getAllJoinedChannels(){
     this.channelService.getAllJoined(this.user_id).subscribe(
       response =>{
         this.channels=response;
@@ -60,7 +73,6 @@ export class CreateSidebarComponent implements OnInit {
         console.log(error);
       }
     );
-
   }
 
 

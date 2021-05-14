@@ -32,7 +32,8 @@ allRequests:any;
         console.log(error);
       }
     );
-    this.getChannelRequests();
+    setInterval(() =>{  this.getChannelRequests(); }, 10000);
+    // this.getChannelRequests();
   }
   
   getChannelRequests(){

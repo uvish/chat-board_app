@@ -2,8 +2,8 @@
     <div class="topbar">
         <h3>Recent Posts</h3>
     </div>
-    <div class="no_posts"  *ngIf="!noPosts">No Recent Posts</div>
-    <div *ngIf="noPosts" class="post_list">
+    <!-- <div class="no_posts">No Recent Posts</div> -->
+    <div class="post_list">
         <div  *ngFor="let post of recentPosts" class="post">
             <div *ngIf="post['post_title']!=null" class="logo">{{post["post_title"] | slice:0:1}}</div>
             <a href="/c/{{post['channel_id']}}" >{{post["post_title"]}}</a>

@@ -75,16 +75,29 @@ export class PostComponent implements OnInit {
 
     this.getChannelAdmin(this.channel_id);
 
-    this.postService.getAllAnswersByPost(this.post_data["post_id"]).subscribe(
-      response =>{
-        this.answers=response;
-        console.log(response);
-      },
-      err =>{console.log(err);}
-    );
+    // this.postService.getAllAnswersByPost(this.post_data["post_id"]).subscribe(
+    //   response =>{
+    //     this.answers=response;
+    //     console.log(response);
+    //   },
+    //   err =>{console.log(err);}
+    // );
+    this.getAllAnswers();
+    setInterval(() =>{  this.getAllAnswers(); }, 10000);
    
     if(this.post_data["user_id"]==this.user_id)
    { this.canDelete=true;}
+  }
+
+
+  getAllAnswers(){
+    this.postService.getAllAnswersByPost(this.post_data["post_id"]).subscribe(
+        response =>{
+          this.answers=response;
+          console.log(response);
+        },
+        err =>{console.log(err);}
+      );
   }
 
 

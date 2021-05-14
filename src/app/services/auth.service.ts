@@ -6,12 +6,13 @@ import { Injectable } from '@angular/core';
 export class AuthService {
  username:any="";
  user_id:any="";
+ BASE_URL="http://localhost:8080";
   constructor(private http:HttpClient) { }
   register(credentials:any){
-    return this.http.post(`http://localhost:8080/api/auth/signup`,credentials, {responseType: 'text'});
+    return this.http.post(this.BASE_URL+`/api/auth/signup`,credentials, {responseType: 'text'});
   }
   login(credentials:any){
-    return this.http.post(`http://localhost:8080/api/auth/login`,credentials, {responseType: 'text'});
+    return this.http.post(this.BASE_URL+`/api/auth/login`,credentials, {responseType: 'text'});
   }
   save_token(response: string){
     // localStorage.setItem("username",response.split(":")[0]);
@@ -43,7 +44,7 @@ export class AuthService {
     // return JSON.parse(localStorage.getItem('id') || '{}');
     // let token=JSON.parse(localStorage.getItem('token') || '{}');
     const token=localStorage.getItem("token") || '';
-    const response=await this.http.get(`http://localhost:8080/api/auth/authenticate/`.concat(token),{responseType: 'text'}).toPromise();
+    const response=await this.http.get(this.BASE_URL+`/api/auth/authenticate/`.concat(token),{responseType: 'text'}).toPromise();
         this.user_id=response.split(":")[1];
         this.username=response.split(":")[0];
         console.log(this.user_id);
@@ -52,7 +53,7 @@ export class AuthService {
 
 
     // const token=localStorage.getItem("token") || '';
-    // this.http.get(`http://localhost:8080/api/auth/authenticate/`.concat(token),{responseType: 'text'}).subscribe(
+    // this.http.get(this.BASE_URL+`/api/auth/authenticate/`.concat(token),{responseType: 'text'}).subscribe(
     //   response =>{
     //     this.user_id=response.split(":")[1];
     //     this.username=response.split(":")[0];
@@ -72,7 +73,7 @@ export class AuthService {
     // return JSON.parse(localStorage.getItem('username') || '{}');
     // let token=JSON.parse(localStorage.getItem('token') || '{}');
     const token=localStorage.getItem("token") || '';
-    const response=await this.http.get(`http://localhost:8080/api/auth/authenticate/`.concat(token),{responseType: 'text'}).toPromise();
+    const response=await this.http.get(this.BASE_URL+`/api/auth/authenticate/`.concat(token),{responseType: 'text'}).toPromise();
         this.username=response.split(":")[0];
        return this.username;
   }

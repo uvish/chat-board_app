@@ -20,12 +20,12 @@
             
 
               <!-- text editor -->
-             
+               
               <!-- text editor end -->
 
             <textarea [(ngModel)]="post.content" Placeholder="Ask your Question here ..!" name="question" id="question" cols="30" rows="10"></textarea>
             <div class="buttons">
-              <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal"  (click)="togglePostMode()">Close</button>
               <button type="button" type="submit" class="btn btn-primary">Create</button>
             </div>   
         </form>
@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="buttons">
-            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal" (click)="toggleChannelMode()">
                 Close
             </button>
             <button type="button" (click)="createChannel()" class="btn btn-primary">Create</button>

@@ -27,14 +27,20 @@
             </div>
 
             <div class="footer">
-              <p class="user">{{answer_data["user_name"]}}</p>
-              <p>{{answer_data["created"] | timeago}} </p>
-              <button *ngIf="canDelete" mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
-                <mat-icon>more_horiz</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
-              <button (click)="deleteAnswer()" mat-menu-item>Delete</button>
-              </mat-menu>
+              
+              <div class="answer_details">
+                <p class="user">{{answer_data["user_name"]}}</p>
+                <p>{{answer_data["created"] | timeago}} </p>
+              </div>
+              <div class="menu">
+                <button *ngIf="canDelete" mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
+                  <mat-icon>more_horiz</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                <button (click)="deleteAnswer()" mat-menu-item>Delete</button>
+                </mat-menu>
+              </div>
+             
             </div>
 
             </div>

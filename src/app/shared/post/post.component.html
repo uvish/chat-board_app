@@ -84,8 +84,12 @@
     <div @fadeIn *ngIf="answers_visible" class="answers">
         <div class="sort_button">
              <!-- sort button -->
-        <button mat-button [matMenuTriggerFor]="sortmenu">
-            Sort Answers
+        <button mat-button [matMenuTriggerFor]="sortmenu"
+        #tooltip="matTooltip"
+          matTooltip="Sort Answers"
+          matTooltipHideDelay="5000"
+        >
+            
             <mat-icon aria-hidden="false" aria-label="Example home icon">sort</mat-icon>
         </button>
         <mat-menu #sortmenu="matMenu">
