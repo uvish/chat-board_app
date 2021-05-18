@@ -26,6 +26,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 // Angular Forms
@@ -88,6 +89,7 @@ import { TokenInterceptor } from './services/auth.interceptor';
     MatPaginatorModule,
     MatDialogModule,
     MatTooltipModule,
+    MatExpansionModule,
     TimeagoModule.forRoot()
   ],
   providers: [{
