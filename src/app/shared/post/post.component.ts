@@ -94,7 +94,6 @@ export class PostComponent implements OnInit {
     this.postService.getAllAnswersByPost(this.post_data["post_id"]).subscribe(
         response =>{
           this.answers=response;
-          console.log(response);
         },
         err =>{console.log(err);}
       );

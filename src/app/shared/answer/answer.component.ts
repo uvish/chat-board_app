@@ -30,8 +30,10 @@ export class AnswerComponent implements OnInit {
     if(this.answer_data["user_id"]==this.user_id){
     this.canDelete=true;
     }
-    if(this.answerService.getAnswerAdmin(this.answer_data["answer_id"] == this.user_id))
-    this.canDelete=true;
+    if(this.answerService.getAnswerAdmin(this.answer_data["answer_id"]) === this.user_id){
+      this.canDelete=true;
+    }
+    
   }
   // ngOnChanges(): void {
   //   this.ngOnInit();
