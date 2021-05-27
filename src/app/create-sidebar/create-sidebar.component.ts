@@ -5,6 +5,7 @@ import { ChannelService } from '../services/channel.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PostService } from '../services/post.service';
 import { AuthService } from '../services/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'create-sidebar',
@@ -14,6 +15,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class CreateSidebarComponent implements OnInit {
 
+  createPostForm:any;
 
   constructor(private authService: AuthService,private _snackbar:MatSnackBar,private httpClient: HttpClient,private channelService: ChannelService,private postService: PostService) { }
   
@@ -23,6 +25,7 @@ export class CreateSidebarComponent implements OnInit {
    user_id:any;
    channel:any;
    post:any;
+   
 
   createPostMode:boolean=false;
   togglePostMode(){
@@ -39,6 +42,14 @@ export class CreateSidebarComponent implements OnInit {
 
 
   async ngOnInit(): Promise<void> {
+
+    this.createPostForm=new FormGroup({
+      title:new FormControl('',Validators.required),
+      content:new FormControl('',Validators.required),
+      channel_id:new FormControl('',Validators.required)
+       }
+      );
+
     this.user_id=await this.authService.getUserId();
  this.channel={
     "name":"",
@@ -51,6 +62,8 @@ export class CreateSidebarComponent implements OnInit {
    "user_id":this.user_id,
    "channel_id":""
  };
+
+
     // this.channelService.getAllJoined(this.user_id).subscribe(
     //   response =>{
     //     this.channels=response;
@@ -78,20 +91,36 @@ export class CreateSidebarComponent implements OnInit {
 
   createPost(){
     console.log(this.post);
-   if(this.post["title"]==='' || this.post["channel_id"]==='' || this.post["content"]==='') {
-    this.openSnackBar("Post Fields can't be empty","Ok");
-   }
-   else{
-      this.postService.createPost(this.post).subscribe(
-         response =>{
-          this.openSnackBar("Post Created","OK")
-         },
-         error=>{
-          this.openSnackBar(error,"OK")
-         }
-      );
-      window.location.reload();
-   }
+     console.log(this.createPostForm.get('content').value);
+     this.post.title = this.createPostForm.get('title').value;
+     this.post.channel_id = this.createPostForm.get('channel_id').value;
+     this.post.content = this.createPostForm.get('content').value;
+
+     this.postService.createPost(this.post).subscribe(
+             response =>{
+              this.openSnackBar("Post Created","OK");
+              window.location.reload();
+             },
+             error=>{
+              this.openSnackBar(error,"OK")
+             }
+          );
+         
+
+  //  if(this.post["title"]==='' || this.post["channel_id"]==='' || this.post["content"]==='') {
+  //   this.openSnackBar("Post Fields can't be empty","Ok");
+  //  }
+  //  else{
+  //     this.postService.createPost(this.post).subscribe(
+  //        response =>{
+  //         this.openSnackBar("Post Created","OK")
+  //        },
+  //        error=>{
+  //         this.openSnackBar(error,"OK")
+  //        }
+  //     );
+  //     window.location.reload();
+  //  }
    
   }
 

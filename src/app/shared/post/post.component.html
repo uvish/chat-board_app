@@ -57,7 +57,7 @@
 
     <div *ngIf="edit_mode" (click)="toggleAnswers()" class="text">
         <p id="post_title">{{post_data["title"]}}</p>
-        <p id="post_content">{{post_data["content"]}}</p>
+        <p id="post_content" [innerHTML]="post_data.content"></p>
        
     </div>
 
@@ -71,8 +71,25 @@
         
           <div class="form-outline">
             <h2>Post Content</h2>
-            <textarea class="form-control" id="textAreaExample" [(ngModel)]="editedPost.content" rows="4"></textarea>
-            <!-- <label class="form-label" for="textAreaExample">Question</label> -->
+
+            <!-- <textarea class="form-control" id="textAreaExample" [(ngModel)]="editedPost.content" rows="4"></textarea> -->
+            <editor id="textAreaExample" [(ngModel)]="editedPost.content"
+            apiKey="ywlncxxdm8xo3xgvaht2rq5j0juabhzk5ac03yhv2x8xynvu"
+              [init]="{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount'
+                ],
+                toolbar:
+                  'undo redo | formatselect | bold italic backcolor | \
+                  alignleft aligncenter alignright alignjustify | \
+                  bullist numlist outdent indent | removeformat '
+              }"
+            ></editor>
+           
           </div>
     </div>
     <div class="modal-footer">

@@ -10,15 +10,31 @@
     
     <div class="post_create">
       <div class="body">
-        <form (ngSubmit)="createPost()">
-            <input type="text" Placeholder="Title" name="title" [(ngModel)]="post.title">
-              <mat-select placeholder="Select Channel" class="browser-default custom-select" name="channel" [(ngModel)]="post.channel_id">
+        <form (ngSubmit)="createPost()" [formGroup]="createPostForm">
+            <input type="text" Placeholder="Title" name="title" [formControlName]="'title'">
+              <mat-select placeholder="Select Channel" class="browser-default custom-select" name="channel" [formControlName]="'channel_id'">
                 <mat-option selected disabled [value]="">Select Channel</mat-option>
                 <mat-option *ngFor="let channel of channels" [value]="channel.channel_id">
                   {{channel.name}}
                 </mat-option>
               </mat-select>
-            <textarea [(ngModel)]="post.content" Placeholder="Ask your Question here ..!" name="question" id="question" cols="30" rows="10"></textarea>
+                  <editor [formControlName]="'content'"
+                  apiKey="ywlncxxdm8xo3xgvaht2rq5j0juabhzk5ac03yhv2x8xynvu"
+                    [init]="{
+                      height: 500,
+                      menubar: false,
+                      plugins: [
+                        'advlist autolink lists link image charmap print preview anchor',
+                        'searchreplace visualblocks code fullscreen',
+                        'insertdatetime media table paste code help wordcount'
+                      ],
+                      toolbar:
+                        'undo redo | formatselect | bold italic backcolor | \
+                        alignleft aligncenter alignright alignjustify | \
+                        bullist numlist outdent indent | removeformat | help'
+                    }"
+                  ></editor>
+            <!-- <textarea [(ngModel)]="post.content" Placeholder="Ask your Question here ..!" name="question" id="question" cols="30" rows="10"></textarea> -->
             <div class="buttons">
               <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal"  (click)="togglePostMode()">Close</button>
               <button type="button" type="submit" class="btn btn-primary">Create</button>

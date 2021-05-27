@@ -11,7 +11,6 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateSidebarComponent } from './create-sidebar/create-sidebar.component';
 import { ChannelsSidebarComponent } from './channels-sidebar/channels-sidebar.component';
-import { EditorModule } from '@tinymce/tinymce-angular';
 // Angular Material
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -45,6 +44,8 @@ import { TimeagoModule } from 'ngx-timeago';
 import { RequestsComponent } from './requests/requests.component';
 import { RecentPostsComponent } from './recent-posts/recent-posts.component';
 import { TokenInterceptor } from './services/auth.interceptor';
+
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 
 
@@ -85,12 +86,12 @@ import { TokenInterceptor } from './services/auth.interceptor';
     MatMenuModule,
     ReactiveFormsModule,
     HttpClientModule,
-    EditorModule,
     MatPaginatorModule,
     MatDialogModule,
     MatTooltipModule,
     MatExpansionModule,
-    TimeagoModule.forRoot()
+    TimeagoModule.forRoot(),
+    EditorModule 
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

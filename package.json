@@ -21,7 +21,7 @@
     "@angular/platform-browser": "^11.2.10",
     "@angular/platform-browser-dynamic": "~11.2.6",
     "@angular/router": "~11.2.6",
-    "@tinymce/tinymce-angular": "^4.2.2",
+    "@tinymce/tinymce-angular": "^4.2.3",
     "@types/quill": "^2.0.6",
     "angular-dark-mode": "^2.0.1",
     "ngx-timeago": "^2.0.0",
