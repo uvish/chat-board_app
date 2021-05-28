@@ -2,9 +2,6 @@
   <div class="left_sidebar">
    <mychannels  @fadeIn></mychannels>
    <requests  @fadeIn [allRequests]="allRequests"></requests>
-
-  
-
    <div class="home_buttons">
    <div class="home card" [routerLink]="['']">
     <div class="icon">
@@ -15,38 +12,19 @@
     </div>  
 </div>
 </div>
-
   </div>
+
   <div class="main">
     <post @fadeIn *ngFor="let post of posts" [post_data]="post"></post>
     <!-- <brief-post *ngFor="let post of posts"  [post_data]="post"></brief-post> -->
     <div class="noposts" *ngIf="no_posts">No Posts Yet !</div>
   </div>
+  
   <div class="right_sidebar">
     <create-sidebar></create-sidebar>
     <channels-sidebar></channels-sidebar>
     <recent-posts></recent-posts>
   </div>
 </div>
-
-<!-- <div class="page">
-<div class="wrapper">
-    <div class="space"></div>
-    <div class="main_row">
-   
-        <post *ngFor="let post of posts" [post_data]="post"></post>
-      
-    </div>
-    <div class="sidebar">
-        <create-sidebar></create-sidebar>
-      <div id="requests" class="requests">
-      <label for="requests">Channel Requests</label>
-
-      </div>
-      <channels-sidebar></channels-sidebar>
-    </div>
-    <div class="space"></div>
- </div>
-</div> -->
 
 
